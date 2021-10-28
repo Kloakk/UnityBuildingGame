@@ -8,7 +8,7 @@ public class Build : MonoBehaviour
     public Camera fpsCam;
     public GameObject newBlock;
     public GameObject previewBlock;
-    public float previewLifetime = 0.2f;
+    
 
 
 
