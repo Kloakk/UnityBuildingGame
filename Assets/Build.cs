@@ -37,12 +37,15 @@ public class Build : MonoBehaviour
                 Debug.Log(hit.transform.name);
                 //Building a new block
                 Vector3 blockPos = hit.point + hit.normal / 2;
+                Vector3 awayNormal = hit.normal;
+
 
                 blockPos.x = (float)Math.Round(blockPos.x, MidpointRounding.AwayFromZero);
                 blockPos.y = (float)Math.Round(blockPos.y, MidpointRounding.AwayFromZero);
                 blockPos.z = (float)Math.Round(blockPos.z, MidpointRounding.AwayFromZero);
 
                 GameObject block = (GameObject)Instantiate(newBlock, blockPos, Quaternion.identity);
+                block.transform.up = hit.normal;
             }
         }
 
