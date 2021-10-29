@@ -8,6 +8,7 @@ TagManager:
   - Preview
   - Cube1
   - Cube2
+  - Edge1
   layers:
   - Default
   - TransparentFX
