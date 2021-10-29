@@ -8,9 +8,9 @@ public class Build : MonoBehaviour
     public Camera fpsCam;
     public GameObject newBlock;
     public GameObject previewBlock;
-    
-
-
+    public int blockPlace = 1;
+    public float totalBlocks = 5;
+        
 
     void Start()
     {
@@ -21,8 +21,40 @@ public class Build : MonoBehaviour
 
     void Update()
     {
+        ///////////////////////// UNFINISHED. Blocks currently can change in the inspector on the press of r, just not to the right one, will try to find gameobject by name later.//////////////////////
+        //detect key down to cycle through int, will correlate to what block you want to place
+        if (Input.GetKeyDown("r"))
+        {
 
-       preview();
+            //add one to the counter each time r is pressed
+            blockPlace++;
+            Debug.Log("blockPlace Changed" + blockPlace);
+
+            //reset counter once it reaches value in totalBlocks (uncomplete, not sure why it doesnt work >:( )
+            if (blockPlace == 2)
+            {
+                blockPlace = 1;
+            }
+            
+
+            //attempt to switch newBlock (see above) to be used by the instantiate blocks, based on the value of blockPlace. 
+            if (blockPlace == 1)
+            {
+                newBlock = GameObject.FindWithTag("Cube1");
+                
+            }
+            //Same as above
+            else if (blockPlace == 2)
+            {
+                newBlock = GameObject.FindWithTag("Cube2");
+                // Debug.Log("GameObject newBlock set to " + newBlock);
+            }
+
+
+        }
+
+
+        preview();
         
 
         if (Input.GetButtonDown("Fire1"))
@@ -121,6 +153,9 @@ public class Build : MonoBehaviour
 
 
     }
+
+
+
     
     
 }
