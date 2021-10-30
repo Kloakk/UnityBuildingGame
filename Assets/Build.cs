@@ -8,9 +8,13 @@ public class Build : MonoBehaviour
     public Camera fpsCam;
     public GameObject newBlock;
     public GameObject previewBlock;
+
     public float blockPlace = 1;
     public float totalBlocks = 5;
-        
+
+    public float scrollValue = 1;
+    Vector3 rotateValue; 
+
 
     void Start()
     {
@@ -21,6 +25,28 @@ public class Build : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            scrollValue = scrollValue + 1;
+            Debug.Log(scrollValue);
+
+            if(scrollValue == 5)
+            {
+                scrollValue = 1;
+            }
+                
+            if(scrollValue == 1)
+            {
+                rotateValue = new Vector3 (0, 90, 0);
+            }
+
+        }
+
+
+
+
+
         ///////////////////////// UNFINISHED. Blocks currently can change in the inspector on the press of r, just not to the right one, will try to find gameobject by name later.//////////////////////
         ///////////////////////// Update : this works now, but its far from perfect.    
         //detect key down to cycle through int, will correlate to what block you want to place
@@ -84,7 +110,7 @@ public class Build : MonoBehaviour
                 blockPos.y = (float)Math.Round(blockPos.y, MidpointRounding.AwayFromZero);
                 blockPos.z = (float)Math.Round(blockPos.z, MidpointRounding.AwayFromZero);
 
-                GameObject block = (GameObject)Instantiate(newBlock, blockPos, Quaternion.identity);
+                GameObject block = (GameObject)Instantiate(newBlock, blockPos, Quaternion.identity, rotateValue);
 
                 
                 block.transform.up = hit.normal;
@@ -162,6 +188,9 @@ public class Build : MonoBehaviour
 
 
         }
+
+
+       
     }
 
 
