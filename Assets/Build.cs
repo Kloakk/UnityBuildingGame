@@ -8,12 +8,13 @@ public class Build : MonoBehaviour
     public Camera fpsCam;
     public GameObject newBlock;
     public GameObject previewBlock;
+    public GameObject emptyTest;
 
     public float blockPlace = 1;
     public float totalBlocks = 5;
 
     public float scrollValue = 1;
-    Vector3 rotateValue; 
+    public float rotateValue = 0; 
 
 
     void Start()
@@ -29,18 +30,28 @@ public class Build : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             scrollValue = scrollValue + 1;
-            Debug.Log(scrollValue);
+            
 
-            if(scrollValue == 5)
+            if(scrollValue == 4)
             {
                 scrollValue = 1;
             }
-                
-            if(scrollValue == 1)
+
+            if (scrollValue == 1)
             {
-                rotateValue = new Vector3 (0, 90, 0);
+                rotateValue = 90;
             }
 
+            else if (scrollValue == 2)
+            {
+                rotateValue = 180;
+            }
+
+            else if (scrollValue == 3) 
+            {
+                rotateValue = 270;
+            }
+                
         }
 
 
@@ -68,7 +79,7 @@ public class Build : MonoBehaviour
             if (blockPlace == 1)
             {
 
-                Debug.Log(newBlock + "Cube 1" + blockPlace);
+                
                 newBlock = GameObject.FindWithTag("Cube1");
 
             }
@@ -77,12 +88,12 @@ public class Build : MonoBehaviour
             {
                 Debug.Log(newBlock + "Cube 2" + blockPlace);
                 newBlock = GameObject.FindWithTag("Cube2");
-                // Debug.Log("GameObject newBlock set to " + newBlock);
+               
             }
 
             else if (blockPlace == 3)
             {
-                Debug.Log(newBlock + "Edge 1" + blockPlace);
+                
                 newBlock = GameObject.FindWithTag("Edge1");
 
             }
@@ -100,20 +111,34 @@ public class Build : MonoBehaviour
 
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, 100f, mask))
             {
-                Debug.Log(hit.transform.name);
+                
                 //Building a new block
                 Vector3 blockPos = hit.point + hit.normal / 2;
-                Vector3 awayNormal = hit.normal;
-
 
                 blockPos.x = (float)Math.Round(blockPos.x, MidpointRounding.AwayFromZero);
                 blockPos.y = (float)Math.Round(blockPos.y, MidpointRounding.AwayFromZero);
                 blockPos.z = (float)Math.Round(blockPos.z, MidpointRounding.AwayFromZero);
 
-                GameObject block = (GameObject)Instantiate(newBlock, blockPos, Quaternion.identity, rotateValue);
+
+                //GameObject empty = (GameObject)Instantiate(emptyTest, blockPos, Quaternion.identity);
+                GameObject block = (GameObject)Instantiate(newBlock, blockPos, Quaternion.identity);
 
                 
+                //empty.transform.up = hit.normal;
+                
+                Debug.Log(hit.normal);
                 block.transform.up = hit.normal;
+                block.transform.Rotate(transform.up, 90, Space.Self);
+
+                //Debug.Log(hit.normal);
+
+
+
+
+
+
+
+
             }
         }
 
@@ -126,7 +151,7 @@ public class Build : MonoBehaviour
             RaycastHit Delete;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out Delete, 100f, mask))
             {
-                Debug.Log(Delete.transform.name);
+                
 
                 Destroy(Delete.transform.gameObject);
             }
@@ -154,7 +179,7 @@ public class Build : MonoBehaviour
 
 
 
-                Debug.Log(hit.transform.name);
+                
                 //Building a new block
                 Vector3 blockPos = hit.point + hit.normal / 2;
 
@@ -171,7 +196,7 @@ public class Build : MonoBehaviour
             }
             else if (Input.GetButtonDown("Fire1"))
             {
-                Debug.Log(hit.transform.name);
+                
                 //Building a new block
                 Vector3 blockPos = hit.point + hit.normal / 2;
 
@@ -181,7 +206,7 @@ public class Build : MonoBehaviour
 
                 previewBlock = GameObject.FindWithTag("Preview");
 
-                Debug.Log("click registered");
+                
 
                 previewBlock.transform.position = blockPos;
             }

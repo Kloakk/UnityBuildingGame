@@ -775,6 +775,36 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 06ce9915d4010264abf507765d271d2a, type: 3}
+--- !u!1 &1630558630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630558631}
+  m_Layer: 0
+  m_Name: EmptyTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630558631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630558630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.17, y: 6.31, z: 0.9644663}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1651042303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,9 +1109,11 @@ MonoBehaviour:
   newBlock: {fileID: 8178704189979981093, guid: c2873fcbdfae73246a368c2eb4c5e288,
     type: 3}
   previewBlock: {fileID: 1796040913}
+  emptyTest: {fileID: 1630558630}
   blockPlace: 1
   totalBlocks: 5
   scrollValue: 1
+  rotateValue: 0
 --- !u!1 &1989592201
 GameObject:
   m_ObjectHideFlags: 0
