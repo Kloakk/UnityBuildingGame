@@ -32,26 +32,31 @@ public class Build : MonoBehaviour
             scrollValue = scrollValue + 1;
             
 
-            if(scrollValue == 4)
+            if(scrollValue == 5)
             {
                 scrollValue = 1;
             }
 
             if (scrollValue == 1)
             {
-                rotateValue = 90;
+                rotateValue = 0;
             }
 
             else if (scrollValue == 2)
             {
-                rotateValue = 180;
+                rotateValue = 90;
             }
 
             else if (scrollValue == 3) 
             {
+                rotateValue = 180;
+            }
+            
+            else if (scrollValue == 4)
+            {
                 rotateValue = 270;
             }
-                
+
         }
 
 
@@ -73,13 +78,9 @@ public class Build : MonoBehaviour
             {
                 blockPlace = 1;
             }
-
-
             //attempt to switch newBlock (see above) to be used by the instantiate blocks, based on the value of blockPlace. 
             if (blockPlace == 1)
-            {
-
-                
+            { 
                 newBlock = GameObject.FindWithTag("Cube1");
 
             }
@@ -128,7 +129,26 @@ public class Build : MonoBehaviour
                 
                 Debug.Log(hit.normal);
                 block.transform.up = hit.normal;
-                block.transform.Rotate(transform.up, 90, Space.Self);
+
+
+                if (scrollValue == 1)
+                {
+                    block.transform.Rotate(transform.up, rotateValue, Space.Self);
+                }
+                if (scrollValue == 2)
+                {
+                    block.transform.Rotate(transform.up, rotateValue, Space.Self);
+                }
+                if (scrollValue == 3)
+                {
+                    block.transform.Rotate(transform.up, rotateValue, Space.Self);
+                }
+                if (scrollValue == 4)
+                {
+                    block.transform.Rotate(transform.up, rotateValue, Space.Self);
+                }
+
+
 
                 //Debug.Log(hit.normal);
 
